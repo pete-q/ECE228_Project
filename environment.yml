@@ -1,0 +1,27 @@
+name: battery-pinn
+channels:
+  - pytorch          # PyTorch binaries
+  - nvidia           # CUDA builds — remove for CPU-only setups
+  - conda-forge      # everything else
+dependencies:
+  # ── core stack ───────────────────────────────────────────
+  - python=3.11
+  - numpy=1.26
+  - scipy=1.13
+  - pandas=2.2
+  - matplotlib=3.9
+  - seaborn                      # optional, nicer notebook figs
+  - scikit-learn
+  - tqdm
+  # ── PyTorch & friends ───────────────────────────────────
+  - pytorch=2.2
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.3           # comment/delete for CPU-only
+  # ── Jupyter / interactive ───────────────────────────────
+  - jupyterlab
+  - ipykernel
+  # ── pip extras ───────────────────────────────────────────
+  - pip
+  - pip:
+      - torchdiffeq>=0.2.3       # ODE solver used inside the PINN
