@@ -24,7 +24,7 @@ battery-pinn/
 │   ├──   4. BatteryAgingARC_45_46_47_48
 │   ├──   5. BatteryAgingARC_49_50_51_52
 │   ├──   6. BatteryAgingARC_53_54_55_56
-├── run.ipynb                 # one-shot script that reproduces the paper
+├── run.ipynb                 # one-shot script that reproduces the paper and adds additional features that improve performance
 ├── docs/
 │   ├── paper.tex          # LaTeX source
 │   └── paper.pdf          # compiled report (generated)
@@ -57,12 +57,11 @@ conda activate battery-pinn
 # 1 Download NASA data from the GitHub Battery Dataset or the link below(~170 MB)
 https://phm-datasets.s3.amazonaws.com/NASA/5.+Battery+Data+Set.zip
 
-# 2 Train + evaluate (reproduces Table 1 in the paper)
-python run.py --data_dir /Battery_Dataset/
-              --epochs 1000 --batch 256 --seed 420
+# 2 Train + evaluate
+Run all blocks of the IPYNB after installing all dependences
 
 # 3 View results
-open figures/loss_curve.pdf            # macOS; use your OS viewer on other OSes
+Results will be output inside the Jupyter notebook
 ```
 Expected output:
 ```
@@ -77,24 +76,18 @@ plus loss figures saved to `figures/`.
 
 | Argument        | Default              | Description                                       |
 |-----------------|----------------------|---------------------------------------------------|
-| `--data_dir`    | `data/BatteryData`   | folder containing NASA `.mat` files               |
+| `--data_dir`    | `Battery_Dataset`   | folder containing NASA `.mat` files               |
 | `--epochs`      | `1000`               | training epochs                                   |
 | `--batch`       | `256`                | batch size                                        |
 | `--lr`          | `1e-3`               | initial learning rate                             |
 | `--alpha`       | `1.0`                | weight on PDE residual (`MSE_PDE`)                |
 | `--beta`        | `1.0`                | weight on physics residual 
 
-Example ablation run:
-```bash
-python run.py --drop_fft --alpha 0.5 --beta 0.5
-```
-
 ---
 
 ## 📊 Results
 | Model            | Test RMSE ↓ (Ah) | Test MAE ↓ (Ah) |
 |------------------|------------------|-----------------|
-| Linear fit       | 0.056            | 0.045           |
 | Data-only MLP    | 0.017            | 0.013           |
 | **PINN (Ours)**  | **0.009 ± 0.0004** | **0.007 ± 0.0003** |
 
@@ -103,21 +96,11 @@ Generated plots:
 
 ---
 
-## 🏁 Reproducing the Paper End-to-End
-```bash
-# runs 5 random splits, aggregates mean ± std, builds LaTeX
-bash scripts/reproduce.sh             # ≈2 h on RTX A6000 (CPU: longer)
-
-# compiled PDF appears at docs/paper.pdf
-```
-
----
-
 ## 📜 Citation
 ```bibtex
 @misc{battery_pinn_2025,
   title        = {Battery-PINN: Physics-Informed Capacity-Fade Prediction},
-  author       = {<Peter Quawas> and <Nathaniel Greenberg, Arturo Amaya, NAME>},
+  author       = {<Peter Quawas, Nathaniel Greenberg, Arturo Amaya, Anushka Sarode},
   year         = {2025},
   howpublished = {GitHub repository},
   url          = {https://github.com/<user>/battery-pinn}
