@@ -99,26 +99,19 @@ Generated plots:
 ## 📜 Citation
 ```bibtex
 @misc{battery_pinn_2025,
-  title        = {Battery-PINN: Physics-Informed Capacity-Fade Prediction},
+  title        = {Physics-Informed Learning for Li-Ion Battery Health
+Prediction},
   author       = {<Peter Quawas, Nathaniel Greenberg, Arturo Amaya, Anushka Sarode},
   year         = {2025},
-  howpublished = {GitHub repository},
-  url          = {https://github.com/<user>/battery-pinn}
 }
 
 @misc{Saha2007BatteryData,
   author       = {Saha, B. and Goebel, K.},
   title        = {Battery Data Set},
   year         = {2007},
-  howpublished = {\url{http://ti.arc.nasa.gov/project/prognostic-data-repository}}
+  howpublished = {\url{https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/}}
 }
 ```
 
 ---
 
-## 🤝 Contributing
-Pull requests are welcome — open an issue first to discuss major changes or ideas.
-
----
-
-> Run the **Quick Start** from a fresh clone to ensure the README truly reproduces the results.
