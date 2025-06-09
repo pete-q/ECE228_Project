@@ -17,18 +17,14 @@ Predicting lithium-ion battery health on the NASA PCoE dataset with a two-stage 
 ## 🗂️ Repository Layout
 ```text
 battery-pinn/
-├── data/                  # ← place NASA .mat files here (empty by default)
-├── src/
-│   ├── datasets.py        # feature extraction + PyTorch Dataset
-│   ├── models.py          # State-MLP, Physics-MLP, PINN wrapper
-│   ├── train.py           # training / evaluation utilities
-│   └── utils.py
-├── run.py                 # one-shot script that reproduces the paper
-├── scripts/
-│   ├── download_data.sh   # helper: download & unzip NASA dataset
-│   └── reproduce.sh       # run 5 random splits + build figs
-├── figures/               # auto-generated plots (loss_curve, etc.)
-├── notebooks/             # exploratory Jupyter notebook
+├── Battery_Dataset/              
+│   ├──   1. BatteryAgingARC-FY08Q4
+│   ├──   2. BatteryAgingARC_25_26_27_28_P1
+│   ├──   3. BatteryAgingARC_25-44
+│   ├──   4. BatteryAgingARC_45_46_47_48
+│   ├──   5. BatteryAgingARC_49_50_51_52
+│   ├──   6. BatteryAgingARC_53_54_55_56
+├── run.ipynb                 # one-shot script that reproduces the paper
 ├── docs/
 │   ├── paper.tex          # LaTeX source
 │   └── paper.pdf          # compiled report (generated)
@@ -58,11 +54,11 @@ conda activate battery-pinn
 
 ## ⚡ Quick Start (single run)
 ```bash
-# 1 Download NASA data (~170 MB)
-bash scripts/download_data.sh          # or download manually & unzip to data/
+# 1 Download NASA data from the GitHub Battery Dataset or the link below(~170 MB)
+https://phm-datasets.s3.amazonaws.com/NASA/5.+Battery+Data+Set.zip
 
 # 2 Train + evaluate (reproduces Table 1 in the paper)
-python run.py --data_dir data/BatteryData \
+python run.py --data_dir /Battery_Dataset/
               --epochs 1000 --batch 256 --seed 420
 
 # 3 View results
@@ -86,9 +82,7 @@ plus loss figures saved to `figures/`.
 | `--batch`       | `256`                | batch size                                        |
 | `--lr`          | `1e-3`               | initial learning rate                             |
 | `--alpha`       | `1.0`                | weight on PDE residual (`MSE_PDE`)                |
-| `--beta`        | `1.0`                | weight on physics residual (`MSE_physics`)        |
-| `--drop_fft`    | *(flag)*             | ablation: remove FFT features                     |
-| `--plots`       | *(flag)*             | save plots to `figures/`                          |
+| `--beta`        | `1.0`                | weight on physics residual 
 
 Example ablation run:
 ```bash
