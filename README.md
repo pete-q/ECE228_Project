@@ -26,7 +26,6 @@ battery-pinn/
 │   ├──   6. BatteryAgingARC_53_54_55_56
 ├── run.ipynb                 # one-shot script that reproduces the paper and adds additional features that improve performance
 ├── docs/
-│   ├── paper.tex          # LaTeX source
 │   └── paper.pdf          # compiled report (generated)
 ├── environment.yml        # Conda environment (PyTorch 2.2 | CUDA 12.3)
 └── README.md              # ← you are here
@@ -43,7 +42,6 @@ battery-pinn/
 | SciPy      | 1.13    | for `.mat` loading                      |
 | pandas     | 2.2     |                                         |
 | matplotlib | 3.9     | plotting                                |
-| seaborn    | optional| nicer notebook figs                     |
 
 ```bash
 conda env create -f environment.yml
@@ -68,7 +66,7 @@ Expected output:
 Test RMSE = 0.0091 Ah
 Test MAE  = 0.0070 Ah
 ```
-plus loss figures saved to `figures/`.
+plus loss figures.
 
 ---
 
@@ -82,17 +80,6 @@ plus loss figures saved to `figures/`.
 | `--lr`          | `1e-3`               | initial learning rate                             |
 | `--alpha`       | `1.0`                | weight on PDE residual (`MSE_PDE`)                |
 | `--beta`        | `1.0`                | weight on physics residual 
-
----
-
-## 📊 Results
-| Model            | Test RMSE ↓ (Ah) | Test MAE ↓ (Ah) |
-|------------------|------------------|-----------------|
-| Data-only MLP    | 0.017            | 0.013           |
-| **PINN (Ours)**  | **0.009 ± 0.0004** | **0.007 ± 0.0003** |
-
-Generated plots:
-* **`figures/loss_curve.pdf`** – training loss (log scale)  
 
 ---
 
