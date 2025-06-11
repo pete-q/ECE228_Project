@@ -88,7 +88,7 @@ plus loss figures.
 @misc{battery_pinn_2025,
   title        = {Physics-Informed Learning for Li-Ion Battery Health
 Prediction},
-  author       = {<Peter Quawas, Nathaniel Greenberg, Arturo Amaya, Anushka Sarode},
+  author       = {Peter Quawas, Nathaniel Greenberg, Arturo Amaya, Anushka Sarode},
   year         = {2025},
 }
 
